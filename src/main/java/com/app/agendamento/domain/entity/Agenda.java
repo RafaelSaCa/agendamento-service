@@ -1,0 +1,34 @@
+package com.app.agendamento.domain.entity;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "agenda")
+public class Agenda {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String descricao;
+
+    @Column(name = "data_hota")
+    private LocalDateTime horario;
+    @Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
+
+    @ManyToOne
+    private Paciente paciente;
+
+}
