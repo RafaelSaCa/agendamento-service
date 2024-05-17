@@ -33,9 +33,7 @@ public class PacienteService {
         if (existeCpf) {
             throw new NegocioException("Cpf já cadastrado!");
         }
-
         return repository.save(paciente);
-
     }
 
     public List<Paciente> listar() {
@@ -45,6 +43,18 @@ public class PacienteService {
     public Optional<Paciente> buscarPorId(Long id) {
         return repository.findById(id);
 
+    }
+
+    public Paciente alterar(Long id, Paciente paciente) {
+        Optional<Paciente> pacienteExistente = this.buscarPorId(id);
+
+        if (pacienteExistente.isEmpty()) {
+            throw new NegocioException(id);
+        }
+
+        paciente.setId(id);
+
+        return salvar(paciente);
     }
 
     public void deletar(Long id) {
