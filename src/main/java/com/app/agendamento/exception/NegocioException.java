@@ -10,4 +10,7 @@ public class NegocioException extends RuntimeException {
         super(message);
     }
 
+    public NegocioException(Long id) {
+        this(String.format("Não existe nenhum cadastro de Paciente com o código %d", id));
+    }
 }
