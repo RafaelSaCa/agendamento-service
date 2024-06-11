@@ -23,7 +23,7 @@ import com.app.agendamento.domain.service.PacienteService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/paciente")
+@RequestMapping("/api/paciente")
 public class PacienteController {
 
     private final PacienteService service;
