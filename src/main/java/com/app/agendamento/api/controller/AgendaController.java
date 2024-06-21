@@ -21,6 +21,7 @@ import com.app.agendamento.domain.service.AgendaService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/agenda")
 public class AgendaController {
