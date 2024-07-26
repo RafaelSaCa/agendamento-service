@@ -3,6 +3,8 @@ package com.app.agendamento.domain.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,9 @@ import com.app.agendamento.domain.entity.Paciente;
 import com.app.agendamento.domain.repository.PacienteRepository;
 import com.app.agendamento.exception.NegocioException;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -38,6 +43,10 @@ public class PacienteService {
 
     public List<Paciente> listar() {
         return repository.findAll();
+    }
+
+    public Page<Paciente> listaPaginada(@PositiveOrZero int page, @Positive @Max(100) int size) {
+        return repository.findAll(PageRequest.of(page, size));
     }
 
     public Optional<Paciente> buscarPorId(Long id) {
