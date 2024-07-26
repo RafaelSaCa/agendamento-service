@@ -3,5 +3,6 @@ CREATE TABLE paciente (
 	nome varchar(50),
 	sobrenome varchar(50),
 	cpf varchar(11),
+	telefone varchar(11),
 	email varchar(50)
 );
