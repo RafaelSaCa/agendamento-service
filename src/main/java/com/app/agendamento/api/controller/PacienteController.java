@@ -3,6 +3,7 @@ package com.app.agendamento.api.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.agendamento.api.dto.mapper.PacienteMapper;
@@ -22,6 +24,9 @@ import com.app.agendamento.domain.entity.Paciente;
 import com.app.agendamento.domain.service.PacienteService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -47,11 +52,18 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity<List<PacienteResponse>> listar() {
-
         List<Paciente> pacientes = service.listar();
         List<PacienteResponse> listPacienteResponse = mapper.toPacienteResponseList(pacientes);
         return ResponseEntity.status(HttpStatus.OK).body(listPacienteResponse);
     }
+
+    // @GetMapping
+    // public Page<Paciente> listarPorPagina(
+    //         @RequestParam(defaultValue = "0") @PositiveOrZero int page,
+    //         @RequestParam(defaultValue = "10") @Positive @Max(100) int size) {
+
+    //     return service.listaPaginada(page, size);
+    // }
 
     @GetMapping("/{id}")
     public ResponseEntity<PacienteResponse> buscarPorId(@PathVariable Long id) {
