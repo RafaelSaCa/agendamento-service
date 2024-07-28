@@ -41,4 +41,8 @@ public class ProcedimentoService {
         procedimento.setId(id);
         return salvar(procedimento);
     }
+
+    public void deletar (Long id){
+        repository.deleteById(id);
+    }
 }
