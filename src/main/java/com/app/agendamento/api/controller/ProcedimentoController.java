@@ -49,8 +49,8 @@ public class ProcedimentoController {
     public ResponseEntity<List<ProcedimentoResponse>> listar(){
 
         List<Procedimento> procedimentos = service.listar();
-        List<ProcedimentoResponse> listaProcedimentoResponses = mapper.toPacienteResponseList(procedimentos);
-        return ResponseEntity.status(HttpStatus.OK).body(listaProcedimentoResponses);
+        List<ProcedimentoResponse> listaProcedimentoResponse = mapper.toProcedimentoResponseList(procedimentos);
+        return ResponseEntity.status(HttpStatus.OK).body(listaProcedimentoResponse);
     }
 
     @GetMapping("/{id}")
