@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import com.app.agendamento.api.dto.request.AgendaRequest;
 import com.app.agendamento.api.dto.response.AgendaResponse;
@@ -12,7 +12,7 @@ import com.app.agendamento.domain.entity.Agenda;
 
 import lombok.RequiredArgsConstructor;
 
-@Configuration
+@Component
 @RequiredArgsConstructor
 public class AgendaMapper {
 
