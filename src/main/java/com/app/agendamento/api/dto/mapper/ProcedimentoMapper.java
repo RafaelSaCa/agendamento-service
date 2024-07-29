@@ -26,7 +26,7 @@ public class ProcedimentoMapper {
         return mapper.map(procedimento, ProcedimentoResponse.class);
     }
 
-    public List<ProcedimentoResponse> toPacienteResponseList (List<Procedimento> procedimentos){
+    public List<ProcedimentoResponse> toProcedimentoResponseList (List<Procedimento> procedimentos){
         return procedimentos.stream()
                 .map(this::toProcedimentoResponse)
                 .collect(Collectors.toList());
