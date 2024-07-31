@@ -14,7 +14,8 @@ import lombok.Setter;
 public class AgendaResponse {
 
     private Long id;
-    private String descricao;
     private LocalDateTime horario;
+    private ProcedimentoResponse procedimento;
+    private MedicoResponse medico;
     private PacienteResponse paciente;
 }
