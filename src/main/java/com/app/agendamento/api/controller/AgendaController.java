@@ -56,12 +56,21 @@ public class AgendaController {
         return ResponseEntity.status(HttpStatus.OK).body(agendaResponse);
     }
 
+    // @PostMapping
+    // public ResponseEntity<AgendaResponse> salvar(@Valid @RequestBody AgendaRequest agendaRequest) {
+    //     Agenda agenda = mapper.toAgenda(agendaRequest);
+    //     Agenda agendaSalva = service.salvar(agenda);
+    //     AgendaResponse agendaResponse = mapper.toAgendaResponse(agendaSalva);
+
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(agendaResponse);
+    // }
+
     @PostMapping
-    public ResponseEntity<AgendaResponse> salvar(@Valid @RequestBody AgendaRequest agendaRequest) {
-        Agenda agenda = mapper.toAgenda(agendaRequest);
+    public ResponseEntity<AgendaResponse> salvar (@Valid @RequestBody AgendaRequest agendaRequest){
+        Agenda agenda = mapper.convertToAgendaResponse(agendaRequest);
         Agenda agendaSalva = service.salvar(agenda);
         AgendaResponse agendaResponse = mapper.toAgendaResponse(agendaSalva);
-
+        
         return ResponseEntity.status(HttpStatus.CREATED).body(agendaResponse);
     }
 
