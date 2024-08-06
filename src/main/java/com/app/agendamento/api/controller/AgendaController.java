@@ -1,5 +1,7 @@
 package com.app.agendamento.api.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.agendamento.api.dto.mapper.AgendaMapper;
@@ -85,4 +88,16 @@ public class AgendaController {
         return ResponseEntity.status(HttpStatus.OK).body(agendaResponse);
     }
 
+    @GetMapping("/filtro-data")
+    public ResponseEntity<AgendaResponse> buscaPorData(@RequestParam String data){
+        LocalDateTime dataAgendamento = LocalDateTime.parse(data);
+        Optional<Agenda> dataExitente = service.buscaPorData(dataAgendamento);
+        
+        if (dataExitente.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        AgendaResponse agendaResponse = mapper.toAgendaResponse(dataExitente.get());
+        return ResponseEntity.status(HttpStatus.OK).body(agendaResponse);
+    }
 }

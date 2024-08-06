@@ -1,5 +1,7 @@
 package com.app.agendamento.domain.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +58,16 @@ public class AgendaService {
         }
 
         return salvar(agenda);
-
     }
+
+    public Optional<Agenda> buscaPorData(LocalDateTime data){
+        Optional<Agenda> dataExistente = repository.findByHorario(data);
+
+        if (dataExistente.isEmpty()){
+            throw new NegocioException("Não existe nenhum agendamento nesta data!");
+        }
+
+       return dataExistente;
+    }
+
 }
